@@ -270,6 +270,10 @@ MonoBehaviour:
   spawnInterval: 1.5
   itemsPerWave: 1
   itemLifetime: 3
+<<<<<<< Updated upstream
+=======
+  spawnTimer: 0
+>>>>>>> Stashed changes
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
