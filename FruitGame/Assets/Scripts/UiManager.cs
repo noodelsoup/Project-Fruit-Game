@@ -14,6 +14,8 @@ public class UiManager : MonoBehaviour
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject difficultySelect;
     [SerializeField] GameObject gameUi;
+    [SerializeField] GameObject gameOver;
+    [SerializeField] GameObject pauseMenu;
 
     bool gameActive = false;
     enum gameDifficulty
@@ -35,6 +37,11 @@ public class UiManager : MonoBehaviour
             timerText.text = time.ToString("F0");
             scoreText.text = $"{score.ToString()} / {highScore.ToString()}";
             Timer();
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Pause();
+            }
         }
     }
 
@@ -49,6 +56,7 @@ public class UiManager : MonoBehaviour
             //game over
             UpdateHighScore(score);
             gameActive = false;
+            gameOver.SetActive(true);
         }
     }
 
@@ -103,5 +111,35 @@ public class UiManager : MonoBehaviour
         difficultySelect.SetActive(false);
         gameUi.SetActive(true);
         gameActive = true;
+    }
+
+    public void MainMenuButton()
+    {
+        time = 10f;
+        score = 0;
+        gameOver.SetActive(false);
+        gameUi.SetActive(false);
+        pauseMenu.SetActive(false);
+        mainMenu.SetActive(true);
+    }
+
+    public void RestartButton()
+    {
+        time = 10f;
+        score = 0;
+        gameOver.SetActive(false);
+        gameActive = true;
+    }
+
+    public void ContinueButton()
+    {
+        pauseMenu.SetActive(false);
+        gameActive = true;
+    }
+
+    void Pause()
+    {
+        gameActive = false;
+        pauseMenu.SetActive(true);
     }
 }
