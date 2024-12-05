@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UiManager : MonoBehaviour
 {
-    int score;
+    public int score;
     int highScore;
     [SerializeField] float time = 60;
     [SerializeField] TMP_Text scoreText;

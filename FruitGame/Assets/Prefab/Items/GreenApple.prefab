@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectionTime: 5
+  itemScore: 10
 --- !u!61 &7924570498624734352
 BoxCollider2D:
   m_ObjectHideFlags: 0
