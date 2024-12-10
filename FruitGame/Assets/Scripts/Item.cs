@@ -9,6 +9,7 @@ public class Item : MonoBehaviour
     private float timer;
 
     [SerializeField] int itemScore; // the amount of score collecting a specific item gives
+    [SerializeField] float itemTime;// the extra time granted by collecting a clock
     UiManager uiManager;
 
     private void Start()
@@ -38,6 +39,7 @@ public class Item : MonoBehaviour
         // Add custom logic for item collection, like adding points or effects
         Debug.Log("Item collected!");
         uiManager.score += itemScore;   // adds item score to the Ui score
+        uiManager.time += itemTime;     //adds time from clock to timer
 
         // Destroy item upon collection
         Destroy(gameObject);

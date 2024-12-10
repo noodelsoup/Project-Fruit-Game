@@ -7,7 +7,7 @@ public class UiManager : MonoBehaviour
 {
     public int score;
     int highScore;
-    [SerializeField] float time = 60;
+    public float time = 60;
     [SerializeField] TMP_Text scoreText;
     [SerializeField] TMP_Text timerText;
 
