@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -18,6 +16,10 @@ public class UiManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
 
     bool gameActive = false;
+
+    GameObject spawner;
+    private ItemSpawner spawnerItem;
+
     enum gameDifficulty
     {
         Easy,
@@ -29,6 +31,12 @@ public class UiManager : MonoBehaviour
     private void Awake()
     {
         highScore = PlayerPrefs.GetInt("HighScore", 0);
+        difficultySelect.SetActive(false);
+        spawnerItem = GameObject.Find(" FruitSpawner").GetComponent<ItemSpawner>();
+        spawner = GameObject.Find(" FruitSpawner");
+        spawner.SetActive(false);
+
+
     }
     private void FixedUpdate()
     {
@@ -89,30 +97,60 @@ public class UiManager : MonoBehaviour
         Application.Quit();
     }
 
+
+    private void SetDifficulty(gameDifficulty newDifficulty)
+    {
+        switch (newDifficulty)
+        {
+            case gameDifficulty.Easy:
+                spawnerItem.itemsPerWave = 1;
+
+                spawnerItem.spawnInterval = 3;
+
+                break;
+
+            case gameDifficulty.Normal:
+                spawnerItem.itemsPerWave = 2;
+                spawnerItem.spawnInterval = 3;
+
+                break;
+
+            case gameDifficulty.Hard:
+                spawnerItem.itemsPerWave = 3;
+                spawnerItem.spawnInterval = 3;
+
+                break;
+
+        }
+
+
+    }
     public void Easybutton()
     {
         difficulty = gameDifficulty.Easy;
-        difficultySelect.SetActive(false);
-        gameUi.SetActive(true);
-        gameActive = true;
+        DifficultyButton(difficulty);
     }
 
     public void Normalbutton()
     {
         difficulty = gameDifficulty.Normal;
-        difficultySelect.SetActive(false);
-        gameUi.SetActive(true);
-        gameActive = true;
+        DifficultyButton(difficulty);
     }
 
     public void Hardbutton()
     {
         difficulty = gameDifficulty.Hard;
+        DifficultyButton(difficulty);
+    }
+    private void DifficultyButton(gameDifficulty newDifficulty)
+    {
         difficultySelect.SetActive(false);
         gameUi.SetActive(true);
         gameActive = true;
-    }
+        spawner.SetActive(true);
 
+        SetDifficulty(newDifficulty);
+    }
     public void MainMenuButton()
     {
         time = 10f;
