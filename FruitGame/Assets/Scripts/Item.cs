@@ -15,6 +15,7 @@ public class Item : MonoBehaviour
     private void Start()
     {
         timer = collectionTime;   // Set the timer to the item's collection time
+        uiManager = FindObjectOfType<UiManager>();
     }
 
     private void Update()
@@ -38,8 +39,7 @@ public class Item : MonoBehaviour
     {
         // Add custom logic for item collection, like adding points or effects
         Debug.Log("Item collected!");
-        uiManager.score += itemScore;   // adds item score to the Ui score
-        uiManager.time += itemTime;     //adds time from clock to timer
+        uiManager.AddScoreAndTime(itemScore, itemTime);   // adds item score and time to the Ui score
 
         // Destroy item upon collection
         Destroy(gameObject);
