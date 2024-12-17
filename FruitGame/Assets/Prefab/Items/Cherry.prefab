@@ -101,6 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectionTime: 5
   itemScore: 10
+  itemTime: 0
+  uiManager: {fileID: 5859531361755440245, guid: b130029db198fe3438c272b477cf5546, type: 3}
 --- !u!61 &-6015101121531074556
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -180,4 +180,10 @@ public class UiManager : MonoBehaviour
         gameActive = false;
         pauseMenu.SetActive(true);
     }
+
+    public void AddScoreAndTime(int scoreAmount, float timeAmount) 
+    {
+        score += scoreAmount;
+        time += timeAmount;
+    }
 }

@@ -102,6 +102,7 @@ MonoBehaviour:
   collectionTime: 5
   itemScore: 0
   itemTime: -15
+  uiManager: {fileID: 5859531361755440245, guid: b130029db198fe3438c272b477cf5546, type: 3}
 --- !u!61 &-291414505683956961
 BoxCollider2D:
   m_ObjectHideFlags: 0

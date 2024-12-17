@@ -1554,7 +1554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
-  time: 10
+  time: 30
   scoreText: {fileID: 1455625040}
   timerText: {fileID: 1339795930}
   mainMenu: {fileID: 419928003}
