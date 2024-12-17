@@ -2,45 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 5.0f;
-    private float jumpForce = 5.0f;
+    private float movementSpeed = 10.0f;
 
-    [SerializeField]
-    public KeyCode jump;
+    private Vector2 movement;
+    private Animator animator;
 
-    private Rigidbody2D rb2d;
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+    }
+    private void Update()
+    {
+        movement = new Vector2(Input.GetAxis("Horizontal"), 0).normalized;
+        animator.SetFloat("Speed", Mathf.Abs(movement.magnitude * movementSpeed));
+
+        bool flipped = movement.x < 0;
+        this.transform.rotation = Quaternion.Euler(new Vector3(0f, flipped ? 180f : 0f, 0f));
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        MovePlayer();
-    }
-
-    public void MovePlayer()
-    {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        // float verticalInput = Input.GetAxis("Vertical");
-
-        Vector3 direction = new Vector3(horizontalInput, 0);
-
-
-        rb2d.velocity = new Vector2(horizontalInput * speed, rb2d.velocity.y);
-        //transform.Translate(direction * speed * Time.deltaTime);
-
-
-        if (Input.GetKey(jump))
+        if (movement != Vector2.zero)
         {
-            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+            var xMovement = movement.x * movementSpeed * Time.deltaTime;
+            this.transform.Translate(new Vector3(xMovement, 0), Space.World);
         }
-
-
     }
 }
