@@ -65,6 +65,7 @@ public class UiManager : MonoBehaviour
             UpdateHighScore(score);
             gameActive = false;
             gameOver.SetActive(true);
+            spawner.SetActive(false);
         }
     }
 
@@ -128,18 +129,21 @@ public class UiManager : MonoBehaviour
     public void Easybutton()
     {
         difficulty = gameDifficulty.Easy;
+        time = 60f;
         DifficultyButton(difficulty);
     }
 
     public void Normalbutton()
     {
         difficulty = gameDifficulty.Normal;
+        time = 40f;
         DifficultyButton(difficulty);
     }
 
     public void Hardbutton()
     {
         difficulty = gameDifficulty.Hard;
+        time = 20f;
         DifficultyButton(difficulty);
     }
     private void DifficultyButton(gameDifficulty newDifficulty)
@@ -159,14 +163,30 @@ public class UiManager : MonoBehaviour
         gameUi.SetActive(false);
         pauseMenu.SetActive(false);
         mainMenu.SetActive(true);
+        gameActive = false;
+        spawner.SetActive(false);
     }
 
     public void RestartButton()
     {
-        time = 10f;
+        switch (difficulty)
+        {
+            case gameDifficulty.Easy:
+                time = 60;
+                break;
+
+            case gameDifficulty.Normal:
+                time = 40f;
+                break;
+
+            case gameDifficulty.Hard:
+                time = 20f;
+                break;
+        }
         score = 0;
         gameOver.SetActive(false);
         gameActive = true;
+        spawner.SetActive(true);
     }
 
     public void ContinueButton()
